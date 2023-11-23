@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
+  <title>Support Our Cause</title>
+  <!-- Include Google Pay API library -->
+  <script src="https://pay.google.com/gp/p/js/pay.js" onload="onGooglePayLoaded()"></script>
+</head>
+<body>
+
+  <header>
+    <nav>
+      <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#donate">Donate</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <div class="hero">
+    <img src="hero-image.jpg" alt="Support Our Cause">
+    <div class="hero-content">
+      <h1>Make a Difference with Your Support</h1>
+      <p>Your contribution helps us create a positive impact in the community.</p>
+      <a href="#donate" class="cta-button">Donate Now</a>
+    </div>
+  </div>
+
+  <div class="container">
+    <section id="about">
+      <h2>About Our Cause</h2>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla aliquam, justo ut aliquet congue, felis dui rhoncus lectus, ut consectetur elit nisl sit amet justo.</p>
+    </section>
+
+    <section id="donate">
+      <h2>Support Us</h2>
+
+      <!-- Google Pay button container -->
+      <div id="googlePayButtonContainer"></div>
+
+      <!-- Donation form -->
+      <form id="donationForm">
+        <div class="donationAmount">
+          <label for="amount">Choose your donation amount:</label>
+          <input type="number" id="amount" name="amount" min="1" step="1" required>
+        </div>
+        <button id="donateButton" type="button" onclick="handleGooglePay()">
+          <span>Donate with Google Pay</span>
+        </button>
+      </form>
+    </section>
+
+    <section id="testimonials">
+      <h2>What People Are Saying</h2>
+      <div class="testimonial">
+        <p>"Amazing organization! They truly make a difference in the lives of many."</p>
+        <p class="testimonial-author">- John Doe, Supporter</p>
+      </div>
+      <div class="testimonial">
+        <p>"I've seen the positive impact firsthand. Proud to contribute to such a great cause."</p>
+        <p class="testimonial-author">- Jane Smith, Volunteer</p>
+      </div>
+    </section>
+  </div>
+  <script src="script.js"></script>
+
+  <script src="script.js"></script>
+  <script>
+    // Google Pay configuration
+    function onGooglePayLoaded() {
+      google.payments.api.PaymentsClient({
+        environment: 'TEST' // Change to 'PRODUCTION' for live transactions
+      });
+      createGooglePayButton();
+    }
+
+    function createGooglePayButton() {
+      const googlePayButton = google.payments.api.PaymentsClient({
+        createButton: createGooglePayButton
+      });
+
+      googlePayButton.addEventListener('load', (event) => {
+        if (event.detail && event.detail.status === 'SUCCESS') {
+          const button = googlePayButton.createButton({
+            onClick: handleGooglePay
+          });
+
+          document.getElementById('googlePayButtonContainer').appendChild(button);
+        }
+      });
+    }
+
+    function handleGooglePay() {
+      // Handle Google Pay logic here
+      // This typically involves creating a payment request and processing the payment
+      alert('Google Pay functionality coming soon!');
+    }
+
+  </script>
+</body>
+</html>
